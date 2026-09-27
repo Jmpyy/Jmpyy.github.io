@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Pablo Figueroa | Desarrollador de Software</title>
-    <meta name="description" content="Portafolio de Juan Pablo Figueroa, desarrollador especializado en SaaS y sistemas críticos.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -21,10 +20,29 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        dark: '#0f172a',
-                        darker: '#020617',
-                        primary: '#3b82f6',
-                        secondary: '#8b5cf6'
+                        accent: {
+                            primary: '#3b82f6',
+                            light: 'rgba(59, 130, 246, 0.1)',
+                        },
+                        background: '#0a0a0a',
+                        surface: '#121212',
+                        surfaceBorder: '#27272a'
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        float: "float 6s ease-in-out infinite",
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-20px)" }
+                        }
                     }
                 }
             }
@@ -32,209 +50,278 @@
     </script>
     <style>
         body {
-            background-color: #020617;
-            color: #f8fafc;
+            background-color: #0a0a0a;
+            color: #fafafa;
         }
-        .gradient-text {
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .bento-card {
+            transition: all 0.3s ease;
         }
-        .project-card:hover {
+        .bento-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.2);
         }
+        .btn-apple {
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-apple-primary {
+            background-color: #fafafa;
+            color: #0a0a0a;
+        }
+        .btn-apple-primary:hover {
+            background-color: #e5e5e5;
+            transform: scale(1.02);
+        }
+        .btn-apple-secondary {
+            background-color: rgba(255,255,255,0.05);
+            color: #fafafa;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-apple-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
     </style>
 </head>
-<body class="antialiased selection:bg-primary selection:text-white">
+<body class="antialiased selection:bg-accent-primary selection:text-white overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-darker/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Navbar Glassmorphism -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 font-bold text-xl tracking-tighter">
-                    <span class="text-white">JP</span><span class="text-primary">.dev</span>
+                    JP<span class="text-accent-primary">.dev</span>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#inicio" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Inicio</a>
-                        <a href="#proyectos" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Proyectos</a>
-                        <a href="#skills" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Skills</a>
-                        <a href="#contacto" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium text-gray-300">Contacto</a>
+                    <div class="flex space-x-1 bg-white/5 rounded-full px-2 py-1">
+                        <a href="#inicio" class="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all">Inicio</a>
+                        <a href="#proyectos" class="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all">Proyectos</a>
+                        <a href="#contacto" class="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all">Contacto</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col justify-center min-h-[90vh]">
-        <div class="max-w-3xl">
-            <p class="text-primary font-semibold tracking-wide uppercase mb-3">👋 Hola, mi nombre es</p>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 text-white">
-                Juan Pablo Figueroa.
-            </h1>
-            <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-gray-400">
-                Construyo software que importa.
-            </h2>
-            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed">
-                Soy un desarrollador de software especializado en plataformas <span class="text-white font-semibold">SaaS</span> y sistemas críticos. Actualmente creando soluciones logísticas y de salud con tecnologías modernas y arquitecturas escalables.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#proyectos" class="px-8 py-3 rounded-lg bg-primary text-white font-semibold text-center hover:bg-blue-600 transition-colors">
-                    Ver mis proyectos
-                </a>
-                <a href="https://github.com/Jmpyy" target="_blank" class="px-8 py-3 rounded-lg border border-gray-600 text-white font-semibold text-center hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
-                    <i class="fab fa-github"></i> Mi GitHub
-                </a>
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section (Plaxia Style) -->
+    <section id="inicio" class="relative min-h-[100vh] flex items-center justify-center pt-20 overflow-hidden">
+        
+        <!-- Blobs de luz de fondo para efecto 3D -->
+        <div class="absolute top-20 -left-10 w-96 h-96 bg-accent-primary rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob"></div>
+        <div class="absolute top-40 right-0 w-96 h-96 bg-emerald-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-4000"></div>
 
-    <!-- Projects Section -->
-    <section id="proyectos" class="py-20 bg-dark">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
-                <span class="text-primary">01.</span> Mis Proyectos Destacados
-                <div class="h-px bg-gray-700 flex-grow ml-4 max-w-xs"></div>
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1: Plaxia -->
-                <div class="project-card bg-darker border border-gray-800 rounded-xl p-6 flex flex-col h-full">
-                    <div class="flex justify-between items-center mb-4">
-                        <i class="fas fa-stethoscope text-3xl text-secondary"></i>
-                        <span class="text-xs font-semibold px-2 py-1 bg-gray-800 text-gray-300 rounded-full">Privado / SaaS</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Texto principal -->
+                <div class="text-left z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light text-accent-primary font-bold text-sm tracking-wide mb-6 border border-blue-500/20">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-primary"></span>
+                        </span>
+                        Software Developer & SaaS Builder
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Plaxia (SaaS Médico)</h3>
-                    <p class="text-gray-400 text-sm mb-4 flex-grow">
-                        Mi producto insignia. Un Software as a Service integral para la gestión de consultorios médicos. Centraliza historias clínicas, turnos y facturación inteligente.
+
+                    <h1 class="text-5xl lg:text-7xl font-black text-white mb-6 tracking-tighter leading-[1.1]">
+                        Construyo software <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-emerald-400">
+                            que escala.
+                        </span>
+                    </h1>
+
+                    <p class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed font-medium">
+                        Hola, soy Juan Pablo Figueroa. Me especializo en crear arquitecturas robustas y experiencias digitales premium para plataformas B2B y logística.
                     </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-primary">Arquitectura Escalable</span>
-                        <span class="text-xs font-mono text-primary">Fullstack</span>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#proyectos" class="btn-apple btn-apple-primary px-8 py-4 text-lg">
+                            Explorar Proyectos
+                        </a>
+                        <a href="https://github.com/Jmpyy" target="_blank" class="btn-apple btn-apple-secondary px-8 py-4 text-lg gap-2">
+                            <i class="fab fa-github"></i> Ver GitHub
+                        </a>
                     </div>
                 </div>
 
-                <!-- Project 2: Rutabit -->
-                <div class="project-card bg-darker border border-gray-800 rounded-xl p-6 flex flex-col h-full">
-                    <div class="flex justify-between items-center mb-4">
-                        <i class="fas fa-truck-fast text-3xl text-primary"></i>
-                        <a href="https://github.com/Jmpyy/rutabit-monitoreo" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
+                <!-- Composición Visual Flotante 3D -->
+                <div class="relative h-[500px] hidden lg:block perspective-1000">
+                    <!-- Tarjeta Principal (Plaxia App Mockup) -->
+                    <div class="absolute top-10 right-10 w-[450px] h-[320px] glass-panel rounded-2xl animate-float border border-white/10 shadow-2xl p-6 overflow-hidden">
+                        <div class="flex gap-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="h-8 w-3/4 bg-white/5 rounded mb-4"></div>
+                        <div class="flex gap-4">
+                            <div class="w-1/3 h-24 bg-accent-primary/20 rounded-xl border border-accent-primary/30"></div>
+                            <div class="w-1/3 h-24 bg-emerald-500/20 rounded-xl border border-emerald-500/30"></div>
+                            <div class="w-1/3 h-24 bg-purple-500/20 rounded-xl border border-purple-500/30"></div>
+                        </div>
+                        <div class="mt-4 h-32 w-full bg-white/5 rounded-xl"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Ecosistema Rutabit</h3>
-                    <p class="text-gray-400 text-sm mb-4 flex-grow">
-                        Plataforma B2B para seguimiento vehicular inteligente y logística. Customización profunda del core de Traccar para visualización GPS masiva en tiempo real.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-primary">React</span>
-                        <span class="text-xs font-mono text-primary">JavaScript</span>
-                        <span class="text-xs font-mono text-primary">Traccar Core</span>
-                    </div>
-                </div>
-
-                <!-- Project 3: Integrar Salud -->
-                <div class="project-card bg-darker border border-gray-800 rounded-xl p-6 flex flex-col h-full">
-                    <div class="flex justify-between items-center mb-4">
-                        <i class="fas fa-heart-pulse text-3xl text-rose-500"></i>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/Jmpyy/Integrar-salud" target="_blank" title="Frontend" class="text-gray-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
-                            <a href="https://github.com/Jmpyy/Integrar-salud-api" target="_blank" title="Backend" class="text-gray-400 hover:text-white"><i class="fas fa-server text-xl"></i></a>
+                    
+                    <!-- Tarjeta Secundaria -->
+                    <div class="absolute bottom-10 left-0 w-[250px] h-[150px] glass-panel rounded-2xl animate-float animation-delay-2000 border border-white/10 shadow-2xl p-5 flex flex-col justify-center">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-accent-primary to-emerald-400 flex items-center justify-center text-xl"><i class="fas fa-check text-white"></i></div>
+                            <div>
+                                <div class="text-white font-bold">100% Uptime</div>
+                                <div class="text-xs text-gray-400">Sistemas Críticos</div>
+                            </div>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Integrar Salud</h3>
-                    <p class="text-gray-400 text-sm mb-4 flex-grow">
-                        Plataforma integral para salud mental. Dashboard administrativo avanzado con analíticas financieras en tiempo real y arquitectura cliente-servidor separada.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="text-xs font-mono text-primary">React 19</span>
-                        <span class="text-xs font-mono text-primary">Vite</span>
-                        <span class="text-xs font-mono text-primary">Zustand</span>
-                        <span class="text-xs font-mono text-primary">Tailwind</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Box Projects Section -->
+    <section id="proyectos" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">Casos de Estudio</h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Productos reales que resuelven problemas reales. Desde la idea hasta el despliegue en producción.</p>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+                
+                <!-- Plaxia (Takes up 2 columns on desktop) -->
+                <div class="bento-card md:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-between group overflow-hidden relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 flex justify-between items-start">
+                        <div>
+                            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-white/10 text-white backdrop-blur-md mb-4 inline-block border border-white/10">SaaS Proprietario</span>
+                            <h3 class="text-3xl font-bold text-white mb-2 tracking-tight">Plaxia</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-accent-primary transition-colors">
+                            <i class="fas fa-stethoscope text-xl text-white"></i>
+                        </div>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-gray-400 mb-4 max-w-md">Plataforma integral para la gestión de consultorios médicos. Centraliza agendas, historias clínicas y facturación inteligente.</p>
+                        <div class="flex gap-2">
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-gray-300">React</span>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-gray-300">Node</span>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-gray-300">Tailwind</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Rutabit -->
+                <div class="bento-card glass-panel rounded-3xl p-8 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 flex justify-between items-start">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">Rutabit<br/>Ecosistema</h3>
+                        <a href="https://github.com/Jmpyy/rutabit-monitoreo" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+                    </div>
+                    <div class="relative z-10 mt-4">
+                        <p class="text-gray-400 text-sm mb-4">Plataforma logística B2B. Customización del core de Traccar para monitoreo GPS masivo.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-emerald-400">Traccar Core</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrar Salud -->
+                <div class="bento-card glass-panel rounded-3xl p-8 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10 flex justify-between items-start">
+                        <h3 class="text-2xl font-bold text-white tracking-tight">Integrar<br/>Salud</h3>
+                        <div class="flex gap-2">
+                            <a href="https://github.com/Jmpyy/Integrar-salud" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+                        </div>
+                    </div>
+                    <div class="relative z-10 mt-4">
+                        <p class="text-gray-400 text-sm mb-4">SaaS integral de salud mental con dashboard financiero en tiempo real.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-purple-400">React 19</span>
+                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-purple-400">Zustand</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stack / About -->
+                <div class="bento-card md:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden">
+                    <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white tracking-tight mb-3">Filosofía de Código</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Estudiante en la <strong>Universidad Provincial de Ezeiza (UPE)</strong>. 
+                                Creo firmemente en aplicar principios SOLID, Clean Architecture y mantener un alto estándar de código.
+                                Desde el backend en Node/PHP/C hasta el frontend en React.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center">
+                                <i class="fab fa-react text-2xl text-[#61DAFB] mb-2"></i>
+                                <span class="text-xs text-gray-400">React</span>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center">
+                                <i class="fab fa-js text-2xl text-[#F7DF1E] mb-2"></i>
+                                <span class="text-xs text-gray-400">TypeScript</span>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center">
+                                <i class="fab fa-docker text-2xl text-[#2496ED] mb-2"></i>
+                                <span class="text-xs text-gray-400">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-darker">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
-                <span class="text-primary">02.</span> Habilidades y Tecnologías
-                <div class="h-px bg-gray-700 flex-grow ml-4 max-w-xs"></div>
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Me enfoco en el desarrollo de soluciones de principio a fin. Mis estudios en la <strong>Universidad Provincial de Ezeiza (UPE)</strong> complementan mi experiencia práctica con fundamentos sólidos en arquitectura de software, bases de datos y lenguajes de bajo nivel.
+    <!-- Call to Action -->
+    <section id="contacto" class="py-24 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-12 text-center border-t border-l border-white/20 shadow-2xl relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-b from-accent-primary/10 to-transparent"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mb-6">¿Listo para escalar?</h2>
+                    <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+                        Si estás buscando un desarrollador capaz de entender tanto la lógica de negocio como la arquitectura técnica de un producto B2B, hablemos.
                     </p>
-                    <p class="text-gray-400 mb-6 leading-relaxed">
-                        Mi filosofía se basa en aplicar principios <strong>SOLID</strong> y crear <em>Clean Code</em>, priorizando siempre la mantenibilidad y escalabilidad del producto final.
-                    </p>
+                    
+                    <a href="mailto:jp.figueroa98@gmail.com" class="btn-apple btn-apple-primary px-10 py-5 text-lg mb-12 shadow-[0_0_40px_rgba(59,130,246,0.3)]">
+                        Enviar un correo <i class="fas fa-paper-plane ml-2"></i>
+                    </a>
+                    
+                    <div class="flex justify-center gap-6">
+                        <a href="https://github.com/Jmpyy" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all border border-white/10">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/uanpablofigueroa/" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-[#0077b5] hover:bg-white/10 transition-all border border-white/10">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://discordapp.com/users/juampyy_." target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-[#5865F2] hover:bg-white/10 transition-all border border-white/10">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-2">
-                    <!-- Column 1 -->
-                    <ul class="space-y-3">
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> JavaScript (ES6+)</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> TypeScript</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> React / Next.js</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> Tailwind CSS</li>
-                    </ul>
-                    <!-- Column 2 -->
-                    <ul class="space-y-3">
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> PHP</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> C / Bajo nivel</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> Node.js</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> MySQL / SQL</li>
-                    </ul>
-                    <!-- Column 3 -->
-                    <ul class="space-y-3">
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> Git & GitHub</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> Docker</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> Linux / WSL</li>
-                        <li class="flex items-center text-gray-300 text-sm"><i class="fas fa-caret-right text-primary mr-2"></i> Clean Architecture</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contacto" class="py-20 md:py-32 bg-dark">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-primary font-semibold tracking-wide uppercase mb-3">03. ¿Qué sigue?</h2>
-            <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">Ponte en contacto</h3>
-            <p class="text-gray-400 mb-10 max-w-xl mx-auto leading-relaxed">
-                Actualmente estoy abierto a nuevas oportunidades y colaboraciones en proyectos interesantes. Ya sea que tengas una pregunta o simplemente quieras saludar, ¡intentaré responderte lo antes posible!
-            </p>
-            
-            <a href="mailto:jp.figueroa98@gmail.com" class="inline-block px-8 py-4 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary/10 transition-colors mb-12">
-                Hablemos
-            </a>
-            
-            <div class="flex justify-center gap-6">
-                <a href="https://github.com/Jmpyy" target="_blank" class="text-gray-400 hover:text-white transition-colors text-2xl">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/uanpablofigueroa/" target="_blank" class="text-gray-400 hover:text-[#0077b5] transition-colors text-2xl">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://discordapp.com/users/juampyy_." target="_blank" class="text-gray-400 hover:text-[#5865F2] transition-colors text-2xl">
-                    <i class="fab fa-discord"></i>
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 bg-darker text-center border-t border-white/5">
-        <p class="text-gray-500 text-sm font-mono">
+    <footer class="py-8 text-center relative z-10">
+        <p class="text-gray-500 text-sm font-medium">
             Diseñado y construido por Juan Pablo Figueroa & Antigravity
         </p>
     </footer>
