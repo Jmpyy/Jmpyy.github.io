@@ -1,330 +1,421 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth bg-[#09090b] text-[#f4f4f5]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Pablo Figueroa | Desarrollador de Software</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Juan Pablo Figueroa — Ingeniero de Software</title>
+    <meta name="description" content="Portafolio de Ingeniería de Software de Juan Pablo Figueroa. Sistemas distribuidos, arquitectura B2B SaaS, telemetría IoT y plataformas de misión crítica.">
     
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        accent: {
-                            primary: '#3b82f6',
-                            light: 'rgba(59, 130, 246, 0.1)',
+                        teal: {
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            950: '#042f2e'
                         },
-                        background: '#0a0a0a',
-                        surface: '#121212',
-                        surfaceBorder: '#27272a'
-                    },
-                    animation: {
-                        blob: "blob 7s infinite",
-                        float: "float 6s ease-in-out infinite",
-                    },
-                    keyframes: {
-                        blob: {
-                            "0%": { transform: "translate(0px, 0px) scale(1)" },
-                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                            "100%": { transform: "translate(0px, 0px) scale(1)" },
-                        },
-                        float: {
-                            "0%, 100%": { transform: "translateY(0)" },
-                            "50%": { transform: "translateY(-20px)" }
+                        zinc: {
+                            850: '#1e1e24',
+                            900: '#121215',
+                            950: '#09090b'
                         }
                     }
                 }
             }
         }
     </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        body {
-            background-color: #0a0a0a;
-            color: #fafafa;
+        ::selection {
+            background-color: #14b8a6;
+            color: #09090b;
         }
-        .glass-panel {
-            background: rgba(18, 18, 18, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
         }
-        .bento-card {
-            transition: all 0.3s ease;
+        .subtle-border {
+            border-color: rgba(255, 255, 255, 0.08);
         }
-        .bento-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.2);
+        .glass-nav {
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
-        .btn-apple {
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .spec-card {
+            background: #121215;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: border-color 0.2s ease;
         }
-        .btn-apple-primary {
-            background-color: #fafafa;
-            color: #0a0a0a;
+        .spec-card:hover {
+            border-color: rgba(20, 184, 166, 0.35);
         }
-        .btn-apple-primary:hover {
-            background-color: #e5e5e5;
-            transform: scale(1.02);
-        }
-        .btn-apple-secondary {
-            background-color: rgba(255,255,255,0.05);
-            color: #fafafa;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .btn-apple-secondary:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
     </style>
 </head>
-<body class="antialiased selection:bg-accent-primary selection:text-white overflow-x-hidden">
+<body class="font-sans antialiased selection:bg-teal-500 selection:text-black bg-[#09090b] text-[#f4f4f5]">
 
-    <!-- Navbar Glassmorphism -->
-    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 font-bold text-xl tracking-tighter">
-                    JP<span class="text-accent-primary">.dev</span>
+    <!-- Navbar Minimalista -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#inicio" class="text-sm font-semibold tracking-tight text-zinc-100 hover:text-teal-500 transition-colors flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+                <span>Juan Pablo Figueroa</span>
+            </a>
+            <nav class="flex items-center gap-6 text-sm text-zinc-400 font-medium">
+                <a href="#proyectos" class="hover:text-zinc-100 transition-colors">Ingeniería & Proyectos</a>
+                <a href="#arquitectura" class="hover:text-zinc-100 transition-colors">Arquitectura</a>
+                <a href="#stack" class="hover:text-zinc-100 transition-colors">Fundamentos</a>
+                <a href="https://github.com/Jmpyy" target="_blank" class="text-zinc-300 hover:text-teal-500 transition-colors flex items-center gap-1.5">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">GitHub</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 pt-32 pb-24">
+
+        <!-- Header / Perfil Profesional -->
+        <section id="inicio" class="mb-24 pt-6">
+            <div class="space-y-6 max-w-3xl">
+                <div class="flex items-center gap-3 text-xs font-mono text-zinc-400">
+                    <span>BUENOS AIRES, AR</span>
+                    <span class="text-zinc-600">•</span>
+                    <span>UNIVERSIDAD PROVINCIAL DE EZEIZA (UPE)</span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="flex space-x-1 bg-white/5 rounded-full px-2 py-1">
-                        <a href="#inicio" class="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all">Inicio</a>
-                        <a href="#proyectos" class="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all">Proyectos</a>
-                        <a href="#contacto" class="text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full transition-all">Contacto</a>
-                    </div>
+                
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+                    Desarrollo de software con rigor de ingeniería, sistemas en tiempo real y arquitectura SaaS.
+                </h1>
+                
+                <p class="text-lg text-zinc-400 leading-relaxed font-normal">
+                    Estudiante de Desarrollo de Software enfocado en la construcción de plataformas B2B de misión crítica donde la latencia, la integridad de los datos y el cumplimiento normativo son indispensables. Creador y arquitecto de <strong class="text-zinc-200">Plaxia</strong> (Healthtech SaaS) y desarrollador del ecosistema logístico <strong class="text-zinc-200">Rutabit</strong>.
+                </p>
+
+                <div class="pt-2 flex flex-wrap items-center gap-4 text-sm font-medium">
+                    <a href="mailto:jp.figueroa98@gmail.com" class="px-5 py-2.5 rounded-lg bg-zinc-100 text-zinc-950 font-semibold hover:bg-zinc-200 transition-all flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>Contactar por Email</span>
+                    </a>
+                    <a href="https://linkedin.com/in/uanpablofigueroa/" target="_blank" class="px-5 py-2.5 rounded-lg bg-zinc-900 border subtle-border text-zinc-300 hover:text-white hover:bg-zinc-850 transition-all flex items-center gap-2">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Jmpyy" target="_blank" class="px-5 py-2.5 rounded-lg bg-zinc-900 border subtle-border text-zinc-300 hover:text-white hover:bg-zinc-850 transition-all flex items-center gap-2">
+                        <i data-lucide="code-2" class="w-4 h-4"></i>
+                        <span>Repositorios</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <!-- Hero Section (Plaxia Style) -->
-    <section id="inicio" class="relative min-h-[100vh] flex items-center justify-center pt-20 overflow-hidden">
-        
-        <!-- Blobs de luz de fondo para efecto 3D -->
-        <div class="absolute top-20 -left-10 w-96 h-96 bg-accent-primary rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob"></div>
-        <div class="absolute top-40 right-0 w-96 h-96 bg-emerald-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-4000"></div>
+        <!-- Proyectos Principales (Case Studies con Profundidad Técnica) -->
+        <section id="proyectos" class="mb-24">
+            <div class="border-b subtle-border pb-4 mb-12 flex items-baseline justify-between">
+                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">01 / Proyectos & Arquitectura</h2>
+                <span class="text-xs text-zinc-500 font-mono">Sistemas en Producción & Casos Reales</span>
+            </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                
-                <!-- Texto principal -->
-                <div class="text-left z-10">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-light text-accent-primary font-bold text-sm tracking-wide mb-6 border border-blue-500/20">
-                        <span class="relative flex h-2.5 w-2.5">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-primary"></span>
-                        </span>
-                        Software Developer & SaaS Builder
+            <!-- Caso 1: Plaxia -->
+            <article class="spec-card rounded-xl p-8 mb-10">
+                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-2xl font-bold tracking-tight text-white">Plaxia</h3>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-teal-950 text-teal-400 border border-teal-500/20">SaaS Médico B2B</span>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-400">Comercial / Privado</span>
+                        </div>
+                        <p class="text-sm text-zinc-400 font-medium">Plataforma clínica integral multi-tenant orientada a la reducción de fricción operativa en consultorios y clínicas médicas.</p>
                     </div>
-
-                    <h1 class="text-5xl lg:text-7xl font-black text-white mb-6 tracking-tighter leading-[1.1]">
-                        Construyo software <br/>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-emerald-400">
-                            que escala.
-                        </span>
-                    </h1>
-
-                    <p class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed font-medium">
-                        Hola, soy Juan Pablo Figueroa. Me especializo en crear arquitecturas robustas y experiencias digitales premium para plataformas B2B y logística.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#proyectos" class="btn-apple btn-apple-primary px-8 py-4 text-lg">
-                            Explorar Proyectos
-                        </a>
-                        <a href="https://github.com/Jmpyy" target="_blank" class="btn-apple btn-apple-secondary px-8 py-4 text-lg gap-2">
-                            <i class="fab fa-github"></i> Ver GitHub
-                        </a>
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="text-xs font-mono text-zinc-500">Rol: Fundador & Arquitecto</span>
                     </div>
                 </div>
 
-                <!-- Composición Visual Flotante 3D -->
-                <div class="relative h-[500px] hidden lg:block perspective-1000">
-                    <!-- Tarjeta Principal (Plaxia App Mockup) -->
-                    <div class="absolute top-10 right-10 w-[450px] h-[320px] glass-panel rounded-2xl animate-float border border-white/10 shadow-2xl p-6 overflow-hidden">
-                        <div class="flex gap-2 mb-4">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="h-8 w-3/4 bg-white/5 rounded mb-4"></div>
-                        <div class="flex gap-4">
-                            <div class="w-1/3 h-24 bg-accent-primary/20 rounded-xl border border-accent-primary/30"></div>
-                            <div class="w-1/3 h-24 bg-emerald-500/20 rounded-xl border border-emerald-500/30"></div>
-                            <div class="w-1/3 h-24 bg-purple-500/20 rounded-xl border border-purple-500/30"></div>
-                        </div>
-                        <div class="mt-4 h-32 w-full bg-white/5 rounded-xl"></div>
-                    </div>
+                <!-- Showcase del producto -->
+                <div class="mb-8 rounded-lg overflow-hidden border subtle-border bg-black">
+                    <img src="plaxia.png" alt="Dashboard y Arquitectura de Plaxia" class="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity">
+                </div>
+
+                <!-- Desafíos Técnicos Resueltos -->
+                <div class="space-y-4 mb-8">
+                    <h4 class="text-xs font-mono uppercase text-zinc-300 tracking-wider">Implementaciones Clave de Ingeniería:</h4>
                     
-                    <!-- Tarjeta Secundaria -->
-                    <div class="absolute bottom-10 left-0 w-[250px] h-[150px] glass-panel rounded-2xl animate-float animation-delay-2000 border border-white/10 shadow-2xl p-5 flex flex-col justify-center">
-                        <div class="flex items-center gap-4 mb-3">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-accent-primary to-emerald-400 flex items-center justify-center text-xl"><i class="fas fa-check text-white"></i></div>
-                            <div>
-                                <div class="text-white font-bold">100% Uptime</div>
-                                <div class="text-xs text-gray-400">Sistemas Críticos</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div class="p-4 rounded-lg bg-zinc-950/60 border subtle-border">
+                            <div class="font-semibold text-zinc-200 mb-1 flex items-center gap-2">
+                                <i data-lucide="mic" class="w-4 h-4 text-teal-500"></i>
+                                Dictado por Voz & Estructuración SOAP
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bento Box Projects Section -->
-    <section id="proyectos" class="py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4">Casos de Estudio</h2>
-                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Productos reales que resuelven problemas reales. Desde la idea hasta el despliegue en producción.</p>
-            </div>
-
-            <!-- Bento Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
-                
-                <!-- Plaxia (Takes up 2 columns on desktop) -->
-                <div class="bento-card md:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-between group overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-accent-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10 flex justify-between items-start">
-                        <div>
-                            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-white/10 text-white backdrop-blur-md mb-4 inline-block border border-white/10">SaaS Proprietario</span>
-                            <h3 class="text-3xl font-bold text-white mb-2 tracking-tight">Plaxia</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-accent-primary transition-colors">
-                            <i class="fas fa-stethoscope text-xl text-white"></i>
-                        </div>
-                    </div>
-                    <div class="relative z-10">
-                        <p class="text-gray-400 mb-4 max-w-md">Plataforma integral para la gestión de consultorios médicos. Centraliza agendas, historias clínicas y facturación inteligente.</p>
-                        <div class="flex gap-2">
-                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-gray-300">React</span>
-                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-gray-300">Node</span>
-                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-gray-300">Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rutabit -->
-                <div class="bento-card glass-panel rounded-3xl p-8 flex flex-col justify-between group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10 flex justify-between items-start">
-                        <h3 class="text-2xl font-bold text-white tracking-tight">Rutabit<br/>Ecosistema</h3>
-                        <a href="https://github.com/Jmpyy/rutabit-monitoreo" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
-                    </div>
-                    <div class="relative z-10 mt-4">
-                        <p class="text-gray-400 text-sm mb-4">Plataforma logística B2B. Customización del core de Traccar para monitoreo GPS masivo.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-emerald-400">Traccar Core</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Integrar Salud -->
-                <div class="bento-card glass-panel rounded-3xl p-8 flex flex-col justify-between group relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="relative z-10 flex justify-between items-start">
-                        <h3 class="text-2xl font-bold text-white tracking-tight">Integrar<br/>Salud</h3>
-                        <div class="flex gap-2">
-                            <a href="https://github.com/Jmpyy/Integrar-salud" target="_blank" class="text-gray-500 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
-                        </div>
-                    </div>
-                    <div class="relative z-10 mt-4">
-                        <p class="text-gray-400 text-sm mb-4">SaaS integral de salud mental con dashboard financiero en tiempo real.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-purple-400">React 19</span>
-                            <span class="text-xs font-mono px-2 py-1 rounded bg-black/50 text-purple-400">Zustand</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stack / About -->
-                <div class="bento-card md:col-span-2 glass-panel rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden">
-                    <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white tracking-tight mb-3">Filosofía de Código</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Estudiante en la <strong>Universidad Provincial de Ezeiza (UPE)</strong>. 
-                                Creo firmemente en aplicar principios SOLID, Clean Architecture y mantener un alto estándar de código.
-                                Desde el backend en Node/PHP/C hasta el frontend en React.
+                            <p class="text-zinc-400 text-xs leading-relaxed">
+                                Pipeline con Web Speech API nativo del navegador para dictado en tiempo real sin latencia ni costo de streaming, procesado por LLM para organizar automáticamente evoluciones médicas bajo estándar SOAP.
                             </p>
                         </div>
-                        <div class="grid grid-cols-3 gap-4 text-center">
-                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center">
-                                <i class="fab fa-react text-2xl text-[#61DAFB] mb-2"></i>
-                                <span class="text-xs text-gray-400">React</span>
+
+                        <div class="p-4 rounded-lg bg-zinc-950/60 border subtle-border">
+                            <div class="font-semibold text-zinc-200 mb-1 flex items-center gap-2">
+                                <i data-lucide="tv" class="w-4 h-4 text-teal-500"></i>
+                                Smart TV & WebSockets en Tiempo Real
                             </div>
-                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center">
-                                <i class="fab fa-js text-2xl text-[#F7DF1E] mb-2"></i>
-                                <span class="text-xs text-gray-400">TypeScript</span>
+                            <p class="text-zinc-400 text-xs leading-relaxed">
+                                Pantalla de sala de espera sincronizada mediante WebSockets en Node.js. Emparejamiento por código QR en 5 segundos y aviso auditivo/visual inmediato al llamar al paciente desde el consultorio.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-lg bg-zinc-950/60 border subtle-border">
+                            <div class="font-semibold text-zinc-200 mb-1 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-teal-500"></i>
+                                Cumplimiento Legal & Encriptación AES-256
                             </div>
-                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center">
-                                <i class="fab fa-docker text-2xl text-[#2496ED] mb-2"></i>
-                                <span class="text-xs text-gray-400">Docker</span>
+                            <p class="text-zinc-400 text-xs leading-relaxed">
+                                Trazabilidad clínica inalterable bajo normativas argentinas (Leyes 26.529 y 27.553). Encriptación simétrica AES-256 *at-rest* para notas confidenciales de salud mental y firma profesional validada.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-lg bg-zinc-950/60 border subtle-border">
+                            <div class="font-semibold text-zinc-200 mb-1 flex items-center gap-2">
+                                <i data-lucide="file-text" class="w-4 h-4 text-teal-500"></i>
+                                Facturación Electrónica Automática AFIP
                             </div>
+                            <p class="text-zinc-400 text-xs leading-relaxed">
+                                Conexión directa a Web Services de AFIP (WSDL/SOAP) para emisión de Facturas A, B y C de manera transparente durante el cobro de la consulta médica.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </section>
+                <!-- Footer de Tecnologías -->
+                <div class="pt-4 border-t subtle-border flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">React 19</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">PHP 8.x REST API</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Docker</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">MySQL 8</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Node.js WebSockets</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Vite PWA</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Zustand</span>
+                    </div>
+                    <div class="text-xs text-zinc-500 font-mono">
+                        Arquitectura Multi-tenant
+                    </div>
+                </div>
+            </article>
 
-    <!-- Call to Action -->
-    <section id="contacto" class="py-24 relative z-10">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="glass-panel rounded-3xl p-12 text-center border-t border-l border-white/20 shadow-2xl relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-b from-accent-primary/10 to-transparent"></div>
-                <div class="relative z-10">
-                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mb-6">¿Listo para escalar?</h2>
-                    <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
-                        Si estás buscando un desarrollador capaz de entender tanto la lógica de negocio como la arquitectura técnica de un producto B2B, hablemos.
-                    </p>
-                    
-                    <a href="mailto:jp.figueroa98@gmail.com" class="btn-apple btn-apple-primary px-10 py-5 text-lg mb-12 shadow-[0_0_40px_rgba(59,130,246,0.3)]">
-                        Enviar un correo <i class="fas fa-paper-plane ml-2"></i>
-                    </a>
-                    
-                    <div class="flex justify-center gap-6">
-                        <a href="https://github.com/Jmpyy" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all border border-white/10">
-                            <i class="fab fa-github text-xl"></i>
+            <!-- Caso 2: Rutabit -->
+            <article class="spec-card rounded-xl p-8 mb-10">
+                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-2xl font-bold tracking-tight text-white">Ecosistema Rutabit</h3>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-300 border subtle-border">IoT & Telemetría Logística</span>
+                        </div>
+                        <p class="text-sm text-zinc-400 font-medium">Plataforma de seguimiento vehicular y monitoreo logístico en tiempo real para flotas corporativas.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com/Jmpyy/rutabit-monitoreo" target="_blank" class="text-xs font-mono text-teal-400 hover:underline flex items-center gap-1">
+                            <span>Código Monitoreo</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                         </a>
-                        <a href="https://linkedin.com/in/uanpablofigueroa/" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-[#0077b5] hover:bg-white/10 transition-all border border-white/10">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </a>
-                        <a href="https://discordapp.com/users/juampyy_." target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-[#5865F2] hover:bg-white/10 transition-all border border-white/10">
-                            <i class="fab fa-discord text-xl"></i>
+                        <span class="text-zinc-600">•</span>
+                        <a href="https://github.com/Jmpyy/Rutabit-landing-page" target="_blank" class="text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-1">
+                            <span>Landing Oficial</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                         </a>
                     </div>
                 </div>
+
+                <div class="space-y-3 text-sm text-zinc-400 mb-6 leading-relaxed">
+                    <p>
+                        Customización avanzada del núcleo de telemetría de <strong>Traccar Core</strong>. Se desarrolló una interfaz reactiva especializada para operadores de logística, con renderizado fluido de coordenadas geográficas de alta frecuencia en mapas interactivos sin degradación de rendimiento.
+                    </p>
+                    <p>
+                        Implementa gestión de geocercas, control de ignición, telemetría de velocidad y trazabilidad de trayectos históricos bajo una experiencia moderna de usuario.
+                    </p>
+                </div>
+
+                <div class="pt-4 border-t subtle-border flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Traccar Core Custom</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">React</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">JavaScript ES6+</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">WebSockets</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">OpenStreetMap API</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Caso 3: Integrar Salud -->
+            <article class="spec-card rounded-xl p-8">
+                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-2xl font-bold tracking-tight text-white">Integrar Salud</h3>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-300 border subtle-border">SPA + REST API Desacoplada</span>
+                        </div>
+                        <p class="text-sm text-zinc-400 font-medium">Sistema de gestión administrativa y clínica orientado a consultorios de salud mental y medicina ambulatoria.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="https://github.com/Jmpyy/Integrar-salud" target="_blank" class="text-xs font-mono text-teal-400 hover:underline flex items-center gap-1">
+                            <span>Frontend SPA</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <span class="text-zinc-600">•</span>
+                        <a href="https://github.com/Jmpyy/Integrar-salud-api" target="_blank" class="text-xs font-mono text-teal-400 hover:underline flex items-center gap-1">
+                            <span>Backend API</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-sm text-zinc-400 mb-6 leading-relaxed">
+                    <p>
+                        Diseñado bajo arquitectura cliente-servidor estrictamente desacoplada. El frontend interactúa mediante contratos REST con la API, administrando estados complejos de agenda médica, facturación multimoneda y analítica de rendimiento mediante dashboards interactivos.
+                    </p>
+                </div>
+
+                <div class="pt-4 border-t subtle-border flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">React 19</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Vite</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Zustand</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Tailwind CSS</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Recharts</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">REST API</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Fundamentos de Ingeniería y Competencias -->
+        <section id="stack" class="mb-24">
+            <div class="border-b subtle-border pb-4 mb-12 flex items-baseline justify-between">
+                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">02 / Fundamentos Técnicos & Stack</h2>
+                <span class="text-xs text-zinc-500 font-mono">Habilidades Probadas en Producción</span>
             </div>
-        </div>
-    </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Arquitectura & Backend -->
+                <div class="spec-card rounded-xl p-6">
+                    <div class="flex items-center gap-2 mb-4 text-zinc-200 font-semibold text-sm">
+                        <i data-lucide="server" class="w-4 h-4 text-teal-500"></i>
+                        <span>Backend & Infraestructura</span>
+                    </div>
+                    <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
+                        <li class="flex items-center justify-between"><span>PHP 8.x (REST APIs)</span> <span class="text-zinc-600">Avanzado</span></li>
+                        <li class="flex items-center justify-between"><span>Node.js (WebSockets)</span> <span class="text-zinc-600">En tiempo real</span></li>
+                        <li class="flex items-center justify-between"><span>MySQL 8 (Relacional)</span> <span class="text-zinc-600">Diseño multi-tenant</span></li>
+                        <li class="flex items-center justify-between"><span>Docker & Containers</span> <span class="text-zinc-600">Entornos aislados</span></li>
+                        <li class="flex items-center justify-between"><span>Linux / WSL 2</span> <span class="text-zinc-600">Despliegues</span></li>
+                        <li class="flex items-center justify-between"><span>AFIP WebServices</span> <span class="text-zinc-600">SOAP / WSDL</span></li>
+                    </ul>
+                </div>
+
+                <!-- Frontend & UI Systems -->
+                <div class="spec-card rounded-xl p-6">
+                    <div class="flex items-center gap-2 mb-4 text-zinc-200 font-semibold text-sm">
+                        <i data-lucide="layout" class="w-4 h-4 text-teal-500"></i>
+                        <span>Frontend & Interfaces</span>
+                    </div>
+                    <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
+                        <li class="flex items-center justify-between"><span>React 19 & Next.js</span> <span class="text-zinc-600">Ecosistema moderno</span></li>
+                        <li class="flex items-center justify-between"><span>TypeScript & JS ES6+</span> <span class="text-zinc-600">Tipado estricto</span></li>
+                        <li class="flex items-center justify-between"><span>Tailwind CSS</span> <span class="text-zinc-600">Sistemas de diseño</span></li>
+                        <li class="flex items-center justify-between"><span>Zustand</span> <span class="text-zinc-600">Gestión de estado</span></li>
+                        <li class="flex items-center justify-between"><span>Vite PWA / Service Workers</span> <span class="text-zinc-600">Soporte Offline</span></li>
+                        <li class="flex items-center justify-between"><span>Web Speech API</span> <span class="text-zinc-600">Dictado nativo</span></li>
+                    </ul>
+                </div>
+
+                <!-- Fundamentos & Bajo Nivel -->
+                <div class="spec-card rounded-xl p-6">
+                    <div class="flex items-center gap-2 mb-4 text-zinc-200 font-semibold text-sm">
+                        <i data-lucide="cpu" class="w-4 h-4 text-teal-500"></i>
+                        <span>Fundamentos & Prácticas</span>
+                    </div>
+                    <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
+                        <li class="flex items-center justify-between"><span>Lenguaje C</span> <span class="text-zinc-600">Gestión de memoria</span></li>
+                        <li class="flex items-center justify-between"><span>SOLID & Clean Code</span> <span class="text-zinc-600">Mantenibilidad</span></li>
+                        <li class="flex items-center justify-between"><span>Seguridad AES-256</span> <span class="text-zinc-600">Cifrado de datos</span></li>
+                        <li class="flex items-center justify-between"><span>Git & GitHub Workflows</span> <span class="text-zinc-600">VCS profesional</span></li>
+                        <li class="flex items-center justify-between"><span>Leyes Sanitarias (AR)</span> <span class="text-zinc-600">Ley 26.529 / 27.553</span></li>
+                        <li class="flex items-center justify-between"><span>Estudios Universitarios</span> <span class="text-zinc-600">UPE</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Filosofía de Desarrollo & Principios de Ingeniería -->
+        <section id="arquitectura" class="mb-24">
+            <div class="border-b subtle-border pb-4 mb-12 flex items-baseline justify-between">
+                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">03 / Principios de Diseño de Software</h2>
+                <span class="text-xs text-zinc-500 font-mono">Filosofía de Trabajo</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-zinc-400">
+                <div class="space-y-3">
+                    <h3 class="text-base font-semibold text-zinc-200 flex items-center gap-2">
+                        <span class="text-teal-500">#</span> Latencia Cero & Ergonomía de Teclado
+                    </h3>
+                    <p class="leading-relaxed">
+                        En entornos operativos (como consultorios médicos o centros logísticos), el software no debe interponerse entre el usuario y su trabajo. Construyo interfaces sin animaciones de ruta artificiales, con debounces estrictos de menos de 180ms y atajos de teclado nativos para operaciones críticas.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-base font-semibold text-zinc-200 flex items-center gap-2">
+                        <span class="text-teal-500">#</span> Seguridad y Cumplimiento Normativo por Diseño
+                    </h3>
+                    <p class="leading-relaxed">
+                        Los datos personales y clínicos exigen respeto riguroso. Cada desarrollo médico implementa control de acceso basado en roles (RBAC), encriptación en reposo y trazabilidad auditable que garantiza validez legal ante auditorías sanitarias.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Directo -->
+        <section class="border-t subtle-border pt-16">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                <div>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Construyamos algo sólido.</h2>
+                    <p class="text-sm text-zinc-400">Abierto a roles de ingeniería de software, arquitectura de sistemas y plataformas de alto rendimiento.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="mailto:jp.figueroa98@gmail.com" class="px-6 py-3 rounded-lg bg-teal-500 text-zinc-950 font-bold hover:bg-teal-400 transition-colors flex items-center gap-2 text-sm">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Iniciar Conversación</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="py-8 text-center relative z-10">
-        <p class="text-gray-500 text-sm font-medium">
-            Diseñado y construido por Juan Pablo Figueroa & Antigravity
-        </p>
+    <footer class="border-t subtle-border py-8 text-center text-xs font-mono text-zinc-500">
+        <p>Juan Pablo Figueroa • Buenos Aires, Argentina • UPE</p>
     </footer>
 
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
