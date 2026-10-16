@@ -2,9 +2,10 @@
 <html lang="es" class="scroll-smooth bg-[#09090b] text-[#f4f4f5]">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Pablo Figueroa — Ingeniero de Software</title>
-    <meta name="description" content="Portafolio de Ingeniería de Software de Juan Pablo Figueroa. Sistemas distribuidos, arquitectura B2B SaaS, telemetría IoT y plataformas de misión crítica.">
+    <title>Juan Pablo Figueroa — Desarrollador Web & Ciberseguridad</title>
+    <meta name="description" content="Portafolio de Juan Pablo Figueroa: desarrollador web orientado al backend y la ciberseguridad. Creador de Plaxia, SaaS médico en producción.">
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +40,7 @@
     </script>
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.294.0/dist/umd/lucide.min.js"></script>
 
     <style>
         ::selection {
@@ -65,6 +66,37 @@
         }
         .spec-card:hover {
             border-color: rgba(20, 184, 166, 0.35);
+            transform: translateY(-2px);
+        }
+        .spec-card { transition: border-color 0.2s ease, transform 0.2s ease; }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: -1; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+        }
+        .hero-glow {
+            position: absolute; top: -120px; left: 50%; width: 700px; height: 380px;
+            transform: translateX(-50%); z-index: -1; pointer-events: none;
+            background: radial-gradient(closest-side, rgba(20,184,166,0.18), transparent);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #5eead4, #14b8a6 60%, #2dd4bf);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(20,184,166,.5); } 50% { opacity: .7; box-shadow: 0 0 0 6px rgba(20,184,166,0); } }
+        .cursor { display: inline-block; width: 8px; height: 1em; background: #14b8a6; vertical-align: text-bottom; animation: blink 1s steps(2) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .pulse-dot, .cursor { animation: none; }
+            .spec-card:hover { transform: none; }
         }
     </style>
 </head>
@@ -77,10 +109,10 @@
                 <span class="w-2 h-2 rounded-full bg-teal-500"></span>
                 <span>Juan Pablo Figueroa</span>
             </a>
-            <nav class="flex items-center gap-6 text-sm text-zinc-400 font-medium">
-                <a href="#proyectos" class="hover:text-zinc-100 transition-colors">Ingeniería & Proyectos</a>
-                <a href="#arquitectura" class="hover:text-zinc-100 transition-colors">Arquitectura</a>
-                <a href="#stack" class="hover:text-zinc-100 transition-colors">Fundamentos</a>
+            <nav class="flex items-center gap-4 sm:gap-6 text-sm text-zinc-400 font-medium">
+                <a href="#proyectos" class="hover:text-zinc-100 transition-colors">Proyectos</a>
+                <a href="#seguridad" class="hidden sm:inline hover:text-zinc-100 transition-colors">Ciberseguridad</a>
+                <a href="#stack" class="hidden sm:inline hover:text-zinc-100 transition-colors">Stack</a>
                 <a href="https://github.com/Jmpyy" target="_blank" class="text-zinc-300 hover:text-teal-500 transition-colors flex items-center gap-1.5">
                     <i data-lucide="github" class="w-4 h-4"></i>
                     <span class="hidden sm:inline">GitHub</span>
@@ -92,8 +124,14 @@
     <main class="max-w-5xl mx-auto px-6 pt-32 pb-24">
 
         <!-- Header / Perfil Profesional -->
-        <section id="inicio" class="mb-24 pt-6">
+        <section id="inicio" class="mb-24 pt-6 relative">
+            <div class="hero-bg"></div>
+            <div class="hero-glow"></div>
             <div class="space-y-6 max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-500/30 bg-teal-950/40 text-xs font-mono text-teal-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500 pulse-dot"></span>
+                    Disponible para pasantías y roles junior
+                </div>
                 <div class="flex items-center gap-3 text-xs font-mono text-zinc-400">
                     <span>BUENOS AIRES, AR</span>
                     <span class="text-zinc-600">•</span>
@@ -101,11 +139,11 @@
                 </div>
                 
                 <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-                    Desarrollo de software con rigor de ingeniería, sistemas en tiempo real y arquitectura SaaS.
+                    Construyo software que resuelve problemas reales, y lo hago <span class="gradient-text">seguro desde el diseño.</span>
                 </h1>
                 
                 <p class="text-lg text-zinc-400 leading-relaxed font-normal">
-                    Estudiante de Desarrollo de Software enfocado en la construcción de plataformas B2B de misión crítica donde la latencia, la integridad de los datos y el cumplimiento normativo son indispensables. Creador y arquitecto de <strong class="text-zinc-200">Plaxia</strong> (Healthtech SaaS) y desarrollador del ecosistema logístico <strong class="text-zinc-200">Rutabit</strong>.
+                    Desarrollador web orientado al backend y a la seguridad. Estudio Desarrollo de Software en la UPE y ya lancé <strong class="text-zinc-200">Plaxia</strong>, un SaaS médico en producción que integra dictado por voz, sala de espera en tiempo real, facturación AFIP y cifrado de datos clínicos. Acelero mi desarrollo con herramientas de IA y estudio C y seguridad web para entender cada capa de lo que construyo.
                 </p>
 
                 <div class="pt-2 flex flex-wrap items-center gap-4 text-sm font-medium">
@@ -122,40 +160,58 @@
                         <span>Repositorios</span>
                     </a>
                 </div>
+
+                <div class="mt-10 rounded-xl border subtle-border bg-zinc-950/80 overflow-hidden max-w-xl">
+                    <div class="flex items-center gap-1.5 px-4 py-2.5 border-b subtle-border bg-zinc-900/60">
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                        <span class="ml-3 text-xs font-mono text-zinc-500">jp@portafolio ~</span>
+                    </div>
+                    <div class="p-4 text-xs font-mono leading-relaxed text-zinc-400 space-y-1">
+                        <div><span class="text-teal-500">$</span> whoami</div>
+                        <div class="text-zinc-300">juan-pablo-figueroa · dev web · UPE</div>
+                        <div><span class="text-teal-500">$</span> cat estudiando.txt</div>
+                        <div class="text-zinc-300">C · seguridad web · OWASP Top 10 · CTFs</div>
+                        <div><span class="text-teal-500">$</span> ./plaxia --status</div>
+                        <div class="text-zinc-300">en producción · buscando primeros clientes</div>
+                        <div><span class="text-teal-500">$</span> <span class="cursor"></span></div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Proyectos Principales (Case Studies con Profundidad Técnica) -->
         <section id="proyectos" class="mb-24">
             <div class="border-b subtle-border pb-4 mb-12 flex items-baseline justify-between">
-                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">01 / Proyectos & Arquitectura</h2>
-                <span class="text-xs text-zinc-500 font-mono">Sistemas en Producción & Casos Reales</span>
+                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">01 / Proyectos</h2>
+                <span class="text-xs text-zinc-500 font-mono">Productos reales, publicados</span>
             </div>
 
             <!-- Caso 1: Plaxia -->
-            <article class="spec-card rounded-xl p-8 mb-10">
+            <article class="reveal spec-card rounded-xl p-8 mb-10">
                 <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                     <div>
                         <div class="flex items-center gap-3 mb-2">
                             <h3 class="text-2xl font-bold tracking-tight text-white">Plaxia</h3>
                             <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-teal-950 text-teal-400 border border-teal-500/20">SaaS Médico B2B</span>
-                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-400">Comercial / Privado</span>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-400">En producción</span>
                         </div>
                         <p class="text-sm text-zinc-400 font-medium">Plataforma clínica integral multi-tenant orientada a la reducción de fricción operativa en consultorios y clínicas médicas.</p>
                     </div>
                     <div class="flex items-center gap-3 text-sm">
-                        <span class="text-xs font-mono text-zinc-500">Rol: Fundador & Arquitecto</span>
+                        <span class="text-xs font-mono text-zinc-500">Rol: Creador y desarrollador</span>
                     </div>
                 </div>
 
                 <!-- Showcase del producto -->
-                <div class="mb-8 rounded-lg overflow-hidden border subtle-border bg-black">
-                    <img src="plaxia.png" alt="Dashboard y Arquitectura de Plaxia" class="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity">
+                <div class="mb-8 rounded-lg overflow-hidden border subtle-border bg-zinc-100">
+                    <img loading="lazy" decoding="async" src="plaxia.png" alt="Logo de Plaxia" class="w-full h-40 sm:h-52 object-contain p-6">
                 </div>
 
                 <!-- Desafíos Técnicos Resueltos -->
                 <div class="space-y-4 mb-8">
-                    <h4 class="text-xs font-mono uppercase text-zinc-300 tracking-wider">Implementaciones Clave de Ingeniería:</h4>
+                    <h4 class="text-xs font-mono uppercase text-zinc-300 tracking-wider">Funcionalidades principales:</h4>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div class="p-4 rounded-lg bg-zinc-950/60 border subtle-border">
@@ -218,14 +274,14 @@
             </article>
 
             <!-- Caso 2: Rutabit -->
-            <article class="spec-card rounded-xl p-8 mb-10">
+            <article class="reveal spec-card rounded-xl p-8 mb-10">
                 <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                     <div>
                         <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-2xl font-bold tracking-tight text-white">Ecosistema Rutabit</h3>
-                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-300 border subtle-border">IoT & Telemetría Logística</span>
+                            <h3 class="text-2xl font-bold tracking-tight text-white">Rutabit</h3>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-300 border subtle-border">Personalización de Traccar · Proyecto archivado</span>
                         </div>
-                        <p class="text-sm text-zinc-400 font-medium">Plataforma de seguimiento vehicular y monitoreo logístico en tiempo real para flotas corporativas.</p>
+                        <p class="text-sm text-zinc-400 font-medium">Mi primer intento de SaaS: seguimiento vehicular para flotas, construido sobre Traccar (plataforma open source de GPS).</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <a href="https://github.com/Jmpyy/rutabit-monitoreo" target="_blank" class="text-xs font-mono text-teal-400 hover:underline flex items-center gap-1">
@@ -242,16 +298,16 @@
 
                 <div class="space-y-3 text-sm text-zinc-400 mb-6 leading-relaxed">
                     <p>
-                        Customización avanzada del núcleo de telemetría de <strong>Traccar Core</strong>. Se desarrolló una interfaz reactiva especializada para operadores de logística, con renderizado fluido de coordenadas geográficas de alta frecuencia en mapas interactivos sin degradación de rendimiento.
+                        Modifiqué la interfaz visual de <strong>Traccar</strong> y le agregué funciones nuevas para operadores de logística, trabajando con mapas interactivos y datos de ubicación en tiempo real.
                     </p>
                     <p>
-                        Implementa gestión de geocercas, control de ignición, telemetría de velocidad y trazabilidad de trayectos históricos bajo una experiencia moderna de usuario.
+                        Decidí no continuar con la idea y enfocar mi esfuerzo en un producto más sólido, que terminó siendo Plaxia. Me dejó experiencia trabajando sobre un sistema existente y con datos en tiempo real.
                     </p>
                 </div>
 
                 <div class="pt-4 border-t subtle-border flex flex-wrap items-center justify-between gap-4">
                     <div class="flex flex-wrap gap-2 text-xs font-mono">
-                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Traccar Core Custom</span>
+                        <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">Traccar (personalizado)</span>
                         <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">React</span>
                         <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">JavaScript ES6+</span>
                         <span class="px-2 py-1 rounded bg-zinc-950 border subtle-border text-zinc-300">WebSockets</span>
@@ -261,14 +317,14 @@
             </article>
 
             <!-- Caso 3: Integrar Salud -->
-            <article class="spec-card rounded-xl p-8">
+            <article class="reveal spec-card rounded-xl p-8">
                 <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                     <div>
                         <div class="flex items-center gap-3 mb-2">
                             <h3 class="text-2xl font-bold tracking-tight text-white">Integrar Salud</h3>
-                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-300 border subtle-border">SPA + REST API Desacoplada</span>
+                            <span class="px-2.5 py-0.5 text-xs font-mono rounded bg-zinc-800 text-zinc-300 border subtle-border">Predecesor de Plaxia · Un consultorio</span>
                         </div>
-                        <p class="text-sm text-zinc-400 font-medium">Sistema de gestión administrativa y clínica orientado a consultorios de salud mental y medicina ambulatoria.</p>
+                        <p class="text-sm text-zinc-400 font-medium">Sistema de gestión para un consultorio individual: la base de la que nació Plaxia.</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <a href="https://github.com/Jmpyy/Integrar-salud" target="_blank" class="text-xs font-mono text-teal-400 hover:underline flex items-center gap-1">
@@ -285,7 +341,7 @@
 
                 <div class="space-y-3 text-sm text-zinc-400 mb-6 leading-relaxed">
                     <p>
-                        Diseñado bajo arquitectura cliente-servidor estrictamente desacoplada. El frontend interactúa mediante contratos REST con la API, administrando estados complejos de agenda médica, facturación multimoneda y analítica de rendimiento mediante dashboards interactivos.
+                        Aplicación con frontend en React y una API separada, que maneja agenda de turnos, facturación y dashboards con estadísticas. Fue mi aprendizaje previo: de acá salieron las ideas y los errores que moldearon Plaxia, que lo reemplaza y lo lleva a más consultorios.
                     </p>
                 </div>
 
@@ -303,10 +359,10 @@
         </section>
 
         <!-- Fundamentos de Ingeniería y Competencias -->
-        <section id="stack" class="mb-24">
+        <section id="stack" class="reveal mb-24">
             <div class="border-b subtle-border pb-4 mb-12 flex items-baseline justify-between">
-                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">02 / Fundamentos Técnicos & Stack</h2>
-                <span class="text-xs text-zinc-500 font-mono">Habilidades Probadas en Producción</span>
+                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">02 / Stack</h2>
+                <span class="text-xs text-zinc-500 font-mono">Lo que uso y lo que estoy profundizando</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -318,12 +374,12 @@
                         <span>Backend & Infraestructura</span>
                     </div>
                     <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
-                        <li class="flex items-center justify-between"><span>PHP 8.x (REST APIs)</span> <span class="text-zinc-600">Avanzado</span></li>
-                        <li class="flex items-center justify-between"><span>Node.js (WebSockets)</span> <span class="text-zinc-600">En tiempo real</span></li>
-                        <li class="flex items-center justify-between"><span>MySQL 8 (Relacional)</span> <span class="text-zinc-600">Diseño multi-tenant</span></li>
-                        <li class="flex items-center justify-between"><span>Docker & Containers</span> <span class="text-zinc-600">Entornos aislados</span></li>
-                        <li class="flex items-center justify-between"><span>Linux / WSL 2</span> <span class="text-zinc-600">Despliegues</span></li>
-                        <li class="flex items-center justify-between"><span>AFIP WebServices</span> <span class="text-zinc-600">SOAP / WSDL</span></li>
+                        <li class="flex items-center justify-between"><span>PHP (REST APIs)</span> <span class="text-zinc-600">En Plaxia</span></li>
+                        <li class="flex items-center justify-between"><span>Node.js (WebSockets)</span> <span class="text-zinc-600">En Plaxia</span></li>
+                        <li class="flex items-center justify-between"><span>MySQL</span> <span class="text-zinc-600">Lo entiendo bien</span></li>
+                        <li class="flex items-center justify-between"><span>Docker</span> <span class="text-zinc-600">Uso básico</span></li>
+                        <li class="flex items-center justify-between"><span>Linux / WSL 2</span> <span class="text-zinc-600">Aprendiendo</span></li>
+                        
                     </ul>
                 </div>
 
@@ -334,12 +390,10 @@
                         <span>Frontend & Interfaces</span>
                     </div>
                     <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
-                        <li class="flex items-center justify-between"><span>React 19 & Next.js</span> <span class="text-zinc-600">Ecosistema moderno</span></li>
-                        <li class="flex items-center justify-between"><span>TypeScript & JS ES6+</span> <span class="text-zinc-600">Tipado estricto</span></li>
-                        <li class="flex items-center justify-between"><span>Tailwind CSS</span> <span class="text-zinc-600">Sistemas de diseño</span></li>
-                        <li class="flex items-center justify-between"><span>Zustand</span> <span class="text-zinc-600">Gestión de estado</span></li>
-                        <li class="flex items-center justify-between"><span>Vite PWA / Service Workers</span> <span class="text-zinc-600">Soporte Offline</span></li>
-                        <li class="flex items-center justify-between"><span>Web Speech API</span> <span class="text-zinc-600">Dictado nativo</span></li>
+                        <li class="flex items-center justify-between"><span>React</span> <span class="text-zinc-600">Con IA</span></li>
+                        <li class="flex items-center justify-between"><span>JavaScript</span> <span class="text-zinc-600">En aprendizaje</span></li>
+                        <li class="flex items-center justify-between"><span>Tailwind CSS</span> <span class="text-zinc-600">Con IA</span></li>
+                        <li class="flex items-center justify-between"><span>HTML & CSS</span> <span class="text-zinc-600">En aprendizaje</span></li>
                     </ul>
                 </div>
 
@@ -347,55 +401,58 @@
                 <div class="spec-card rounded-xl p-6">
                     <div class="flex items-center gap-2 mb-4 text-zinc-200 font-semibold text-sm">
                         <i data-lucide="cpu" class="w-4 h-4 text-teal-500"></i>
-                        <span>Fundamentos & Prácticas</span>
+                        <span>Fundamentos</span>
                     </div>
                     <ul class="space-y-2.5 text-xs text-zinc-400 font-mono">
-                        <li class="flex items-center justify-between"><span>Lenguaje C</span> <span class="text-zinc-600">Gestión de memoria</span></li>
-                        <li class="flex items-center justify-between"><span>SOLID & Clean Code</span> <span class="text-zinc-600">Mantenibilidad</span></li>
-                        <li class="flex items-center justify-between"><span>Seguridad AES-256</span> <span class="text-zinc-600">Cifrado de datos</span></li>
-                        <li class="flex items-center justify-between"><span>Git & GitHub Workflows</span> <span class="text-zinc-600">VCS profesional</span></li>
-                        <li class="flex items-center justify-between"><span>Leyes Sanitarias (AR)</span> <span class="text-zinc-600">Ley 26.529 / 27.553</span></li>
-                        <li class="flex items-center justify-between"><span>Estudios Universitarios</span> <span class="text-zinc-600">UPE</span></li>
+                        <li class="flex items-center justify-between"><span>Lenguaje C</span> <span class="text-zinc-600">Estudiando</span></li>
+                        <li class="flex items-center justify-between"><span>Lógica y backend</span> <span class="text-zinc-600">Lo que mejor entiendo</span></li>
+                        <li class="flex items-center justify-between"><span>Cifrado AES-256</span> <span class="text-zinc-600">Aplicado en Plaxia</span></li>
+                        <li class="flex items-center justify-between"><span>Git & GitHub</span> <span class="text-zinc-600">Uso diario</span></li>
+                        <li class="flex items-center justify-between"><span>Normativa sanitaria AR</span> <span class="text-zinc-600">Ley 26.529 / 27.553</span></li>
+                        <li class="flex items-center justify-between"><span>Tec. en Desarrollo de Software</span> <span class="text-zinc-600">UPE</span></li>
                     </ul>
                 </div>
 
             </div>
         </section>
 
-        <!-- Filosofía de Desarrollo & Principios de Ingeniería -->
-        <section id="arquitectura" class="mb-24">
+        <!-- Ciberseguridad -->
+        <section id="seguridad" class="reveal mb-24">
             <div class="border-b subtle-border pb-4 mb-12 flex items-baseline justify-between">
-                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">03 / Principios de Diseño de Software</h2>
-                <span class="text-xs text-zinc-500 font-mono">Filosofía de Trabajo</span>
+                <h2 class="text-xs font-mono uppercase tracking-wider text-teal-500 font-semibold">03 / Ciberseguridad</h2>
+                <span class="text-xs text-zinc-500 font-mono">Mi objetivo a largo plazo</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-zinc-400">
                 <div class="space-y-3">
                     <h3 class="text-base font-semibold text-zinc-200 flex items-center gap-2">
-                        <span class="text-teal-500">#</span> Latencia Cero & Ergonomía de Teclado
+                        <span class="text-teal-500">#</span> Por qué seguridad
                     </h3>
                     <p class="leading-relaxed">
-                        En entornos operativos (como consultorios médicos o centros logísticos), el software no debe interponerse entre el usuario y su trabajo. Construyo interfaces sin animaciones de ruta artificiales, con debounces estrictos de menos de 180ms y atajos de teclado nativos para operaciones críticas.
+                        Siempre me atrajo cómo piensa un atacante, pero mi camino es el ético y defensivo: entender cómo se rompen los sistemas para poder protegerlos. Por eso empiezo por el desarrollo web: no se puede asegurar bien lo que no se sabe construir.
                     </p>
                 </div>
 
                 <div class="space-y-3">
                     <h3 class="text-base font-semibold text-zinc-200 flex items-center gap-2">
-                        <span class="text-teal-500">#</span> Seguridad y Cumplimiento Normativo por Diseño
+                        <span class="text-teal-500">#</span> Ruta de aprendizaje
                     </h3>
-                    <p class="leading-relaxed">
-                        Los datos personales y clínicos exigen respeto riguroso. Cada desarrollo médico implementa control de acceso basado en roles (RBAC), encriptación en reposo y trazabilidad auditable que garantiza validez legal ante auditorías sanitarias.
-                    </p>
+                    <ul class="space-y-1.5 text-xs font-mono">
+                        <li>→ Lenguaje C y fundamentos de memoria <span class="text-zinc-600">(en curso)</span></li>
+                        <li>→ TryHackMe y PortSwigger Web Security Academy</li>
+                        <li>→ OWASP Top 10 aplicado a mis propios proyectos</li>
+                        <li>→ CTFs y writeups publicados</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Contacto Directo -->
-        <section class="border-t subtle-border pt-16">
+        <section class="reveal border-t subtle-border pt-16">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
                 <div>
-                    <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Construyamos algo sólido.</h2>
-                    <p class="text-sm text-zinc-400">Abierto a roles de ingeniería de software, arquitectura de sistemas y plataformas de alto rendimiento.</p>
+                    <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Sumo energía y ganas de aprender a tu equipo.</h2>
+                    <p class="text-sm text-zinc-400">Abierto a pasantías y roles junior en desarrollo web (backend o full stack), con la meta de crecer hacia ciberseguridad.</p>
                 </div>
                 <div class="flex items-center gap-4">
                     <a href="mailto:jp.figueroa98@gmail.com" class="px-6 py-3 rounded-lg bg-teal-500 text-zinc-950 font-bold hover:bg-teal-400 transition-colors flex items-center gap-2 text-sm">
@@ -416,6 +473,15 @@
     <!-- Initialize Lucide Icons -->
     <script>
         lucide.createIcons();
+        const els = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+            }, { threshold: 0.08 });
+            els.forEach(el => io.observe(el));
+        } else {
+            els.forEach(el => el.classList.add('visible'));
+        }
     </script>
 </body>
 </html>
